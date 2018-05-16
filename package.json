@@ -1,0 +1,37 @@
+{
+  "name": "react-redux-learning",
+  "version": "1.0.0",
+  "description": "Simple todo app with react-redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --devtool source-map",
+    "devServ": "webpack-dev-server --mode development --devtool source-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladimirFr89/React-redux-learning.git"
+  },
+  "author": "Vladimir Fedorin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladimirFr89/React-redux-learning/issues"
+  },
+  "homepage": "https://github.com/vladimirFr89/React-redux-learning#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}
