@@ -15,14 +15,6 @@ const addTodo = (textValue) => {
     }
 };
 
-const editTodo = () => {
-  return {
-      type: EDIT_TODO,
-      id: 0,
-      text: 'Work with react'
-  }
-};
-
 class App extends Component{
     constructor(){
         super();
