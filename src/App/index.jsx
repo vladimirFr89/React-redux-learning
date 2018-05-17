@@ -1,34 +1,58 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {
+    ADD_TODO,
+    DELETE_TODO,
+    EDIT_TODO
+} from '../ActionTypes';
 
- class App extends Component{
+import ToDoRow from '../components/ToDoRow';
+
+const addTodo = (textValue) => {
+    return {
+        type: ADD_TODO,
+        text: textValue
+    }
+};
+
+const editTodo = () => {
+  return {
+      type: EDIT_TODO,
+      id: 0,
+      text: 'Work with react'
+  }
+};
+
+class App extends Component{
     constructor(){
         super();
-        this.handleUpBtn = this.handleUpBtn.bind(this);
-        this.handleDownBtn = this.handleDownBtn.bind(this);
+        this.handleAddBtn = this.handleAddBtn.bind(this);
     }
 
     render(){
+        console.info('Current todos state:');
+        console.info(this.props.curState);
+        const listElements = this.props.curState.map((item, index)=>{
+            return (
+                <li key={index}><ToDoRow id={index}/></li>
+            )
+        });
         return (
             <div>
-                <h2>This is react!!</h2>
-                <h3>With state is {this.props.curState}</h3>
-                <button onClick={this.handleUpBtn}>Up!</button>
-                <button onClick={this.handleDownBtn}>Down!</button>
+                <h2>ToDoApp!</h2>
+                <input type='text' placeholder='new todo' ref={(input)=>{this.textInput = input;}}/>
+                <button onClick={this.handleAddBtn}>Add</button>
+                <ul>
+                    {listElements}
+                </ul>
             </div>
         )
     }
 
-    handleUpBtn() {
+    handleAddBtn() {
         //store.dispatch({ type: 'INCREMENT' });
-        console.info('up!');
-        this.props.handleUp();
-    }
-
-    handleDownBtn() {
-        //store.dispatch({ type: 'DECREMENT' });
-        console.info('down!');
-        this.props.handleDown();
+        this.props.handleAdd(this.textInput.value);
+        this.textInput.value = '';
     }
 }
 
@@ -40,12 +64,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleUp: ()=>{
-            dispatch({type: 'INCREMENT'});
+        handleAdd: (value)=>{
+            dispatch(addTodo(value));
         },
 
-        handleDown: ()=> {
-            dispatch({type: 'DECREMENT'});
+        handleDelete: ()=> {
+            dispatch(delTodo());
         }
     }
 };
