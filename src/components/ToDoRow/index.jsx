@@ -10,10 +10,10 @@ class ToDoRow extends Component{
         this.handleEditBtn = this.handleEditBtn.bind(this);
     }
     render(){
-        const {id} = this.props;
-        const element = this.props.curState[id].isEditing ?
+        const {id, curState} = this.props;
+        const element = curState.todoList[id].isEditing ?
             <ToDoRowEdit id={id}/>:
-            <span>{this.props.curState[id].text}</span>;
+            <span>{curState.todoList[id].text}</span>;
 
         return(
             <div>

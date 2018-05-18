@@ -19,19 +19,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
     );
 });
 
-const initState = [];
+const initState = {todoList:[]};
 
 const delToDo = (state, action)=>{
     switch (action.type) {
         case DELETE_TODO:
             const newState = [];
-            state.forEach((item, index) => {
+            const oldList = [...state.todoList];
+
+            oldList.forEach((item, index) => {
                 if (index!== action.id) {
                     newState.push(item);
                 }
             });
 
-            return newState;
+            return {
+                ...state,
+                todoList: newState
+            };
+
             break;
         default:
             return state;
@@ -42,14 +48,19 @@ const prepareToEdit = (state, action) => {
     switch (action.type) {
         case INIT_EDIT_TODO:
             const newState = [];
-            state.forEach((item, index)=>{
+            const oldList = [...state.todoList];
+
+            oldList.forEach((item, index)=>{
                 if (index === action.id){
                     item.isEditing = true;
                 }
                 newState.push(item);
             });
 
-            return newState;
+            return {
+                ...state,
+                todoList: newState
+            };
             break;
         default:
             return state;
@@ -60,7 +71,9 @@ const editToDo = (state, action) => {
     switch (action.type) {
         case EDIT_TODO:
             const newState = [];
-            state.forEach((item, index)=>{
+            const oldList = [...state.todoList];
+
+            oldList.forEach((item, index)=>{
                 if (index === action.id){
                     item.text = action.text;
                     item.isEditing = false;
@@ -68,7 +81,10 @@ const editToDo = (state, action) => {
                 newState.push(item);
             });
 
-            return newState;
+            return {
+                ...state,
+                todoList: newState
+            };
             break;
         default:
             return state;
@@ -78,13 +94,23 @@ const editToDo = (state, action) => {
 const todoApp = (state = initState, action) => {
     switch (action.type) {
         case ADD_TODO:
-            return [
+            return {
                 ...state,
-                {
-                    text: action.text,
-                    isEditing: false
-                }
-            ];
+                todoList:[
+                    ...state.todoList,
+                    {
+                        text: action.text,
+                        isEditing: false
+                    }
+                ]
+            };
+            // return [
+            //     ...state,
+            //     {
+            //         text: action.text,
+            //         isEditing: false
+            //     }
+            // ];
             break;
 
         case DELETE_TODO:
@@ -104,19 +130,3 @@ const todoApp = (state = initState, action) => {
 };
 
 const store = createStore(todoApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
-// store.subscribe(() =>
-//     console.log(store.getState())
-// );
-
-function counter(state = initState, action) {
-    // switch (action.type) {
-    //     case 'INCREMENT':
-    //         return state + 1
-    //     case 'DECREMENT':
-    //         return state - 1
-    //     default:
-    //         return state
-    // }
-    return state;
-}

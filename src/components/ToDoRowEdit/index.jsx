@@ -10,10 +10,10 @@ class ToDoRowEdit extends Component {
     }
 
     render(){
-        const {id} = this.props;
+        const {id, curState} = this.props;
         return (
             <div>
-                <input type='text' defaultValue={this.props.curState[id].text} ref={(input)=>{this.textInput = input}}/>
+                <input type='text' defaultValue={curState.todoList[id].text} ref={(input)=>{this.textInput = input}}/>
                 <button onClick={this.handleApplyBtn}>Apply</button>
             </div>
         )

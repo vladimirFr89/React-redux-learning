@@ -12,9 +12,8 @@ class App extends Component{
     }
 
     render(){
-        console.info('Current todos state:');
-        console.info(this.props.curState);
-        const listElements = this.props.curState.map((item, index)=>{
+        const {curState} = this.props;
+        const listElements = curState.todoList.map((item, index)=>{
             return (
                 <li key={index}><ToDoRow id={index}/></li>
             )
