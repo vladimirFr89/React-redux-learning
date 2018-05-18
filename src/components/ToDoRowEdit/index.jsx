@@ -1,14 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {EDIT_TODO} from '../../ActionTypes';
-
-const editTodo = (index, value)=> {
-    return {
-        type: EDIT_TODO,
-        id: index,
-        text: value
-    }
-};
+import {editTodo} from '../../ActionCreators';
 
 class ToDoRowEdit extends Component {
 

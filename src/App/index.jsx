@@ -1,19 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {
-    ADD_TODO,
-    DELETE_TODO,
-    EDIT_TODO
-} from '../ActionTypes';
+
+import {addTodo} from '../ActionCreators';
 
 import ToDoRow from '../components/ToDoRow';
-
-const addTodo = (textValue) => {
-    return {
-        type: ADD_TODO,
-        text: textValue
-    }
-};
 
 class App extends Component{
     constructor(){
@@ -58,10 +48,6 @@ const mapDispatchToProps = dispatch => {
     return {
         handleAdd: (value)=>{
             dispatch(addTodo(value));
-        },
-
-        handleDelete: ()=> {
-            dispatch(delTodo());
         }
     }
 };

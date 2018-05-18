@@ -1,21 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {DELETE_TODO, INIT_EDIT_TODO} from '../../ActionTypes'
 import ToDoRowEdit from '../ToDoRowEdit';
-
-const delTodo = (index) => {
-    return {
-        type: DELETE_TODO,
-        id: index
-    }
-};
-
-const prepareToEdit = (index) => {
-    return {
-        type: INIT_EDIT_TODO,
-        id: index
-    }
-};
+import {delTodo, prepareToEdit} from '../../ActionCreators';
 
 class ToDoRow extends Component{
     constructor(props){
