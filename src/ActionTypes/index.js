@@ -2,3 +2,7 @@ export const ADD_TODO = 'ADD_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 export const EDIT_TODO = 'EDIT_TODO';
 export const INIT_EDIT_TODO = 'INIT_EDIT_TODO';
+
+export const REFRESH_DOING = 'REFRESH_DOING';
+export const REQUEST_SOMETHING = 'REQUEST_SOMETHING';
+export const RECEIVE_SOMETHING = 'RECEIVE_SOMETHING';
