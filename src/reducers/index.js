@@ -3,8 +3,14 @@ import * as actions from '../ActionTypes';
 import delToDo from './delToDo';
 import prepareToEdit from './prepareToEdit';
 import editToDo from './editToDo';
+import receiveDataFromAPI from './receiveDataFromAPI';
+import doRefresh from './doRefresh';
 
-const initState = {todoList:[]};
+const initState = {
+    didRefresh: false,
+    isFetch: false,
+    data:'',
+    todoList:[]};
 
 const todoApp = (state = initState, action) => {
     switch (action.type) {
@@ -31,6 +37,14 @@ const todoApp = (state = initState, action) => {
 
         case actions.EDIT_TODO:
             return editToDo(state, action);
+            break;
+
+        case actions.RECEIVE_SOMETHING:
+            return receiveDataFromAPI(state, action);
+            break;
+
+        case actions.REFRESH_DOING:
+            return doRefresh(state, action);
             break;
         default:
             return state;
