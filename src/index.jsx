@@ -4,6 +4,8 @@ import { createStore } from 'redux';
 import {Provider} from 'react-redux';
 import App from './App';
 
+import reducer from './reducers';
+
 document.addEventListener("DOMContentLoaded", function(event) {
     render(
         <Provider store={store}>
@@ -13,19 +15,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
     );
 });
 
-const store = createStore(counter);
-
-store.subscribe(() =>
-    console.log(store.getState())
-);
-
-function counter(state = 100, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return state + 1
-        case 'DECREMENT':
-            return state - 1
-        default:
-            return state
-    }
-}
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
